@@ -24,23 +24,57 @@
         </li>
 
         <!-- Layouts -->
-        <li class="menu-item @if (request()->is('intern') || request()->is('divisi')) active @endif">
+        <li class="menu-item @if (request()->is('intern') || request()->is('divisi') || request()->is('absensi')) active @endif">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user-badge"></i>
                 <div data-i18n="Layouts">Internship</div>
             </a>
 
             <ul class="menu-sub">
-                <li class="menu-item">
-                    <a href="{{ route('intern.index') }}" class="menu-link active ">
-                        <div>Data Anggota Magang</div>
-                    </a>
-                </li>
-                <li class="menu-item">
-                    <a href="{{ route('divisi.index') }}" class="menu-link">
-                        <div data-i18n="Without navbar">Divisi Magang</div>
-                    </a>
-                </li>
+                @if (Auth::user()->role === 'Admin')
+                    <li class="menu-item">
+                        <a href="{{ route('intern.index') }}" class="menu-link active ">
+                            <div>Data Anggota Magang</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('divisi.index') }}" class="menu-link">
+                            <div>Divisi Magang</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('absensi.index') }}" class="menu-link">
+                            <div>Data Absensi</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
+                            <div>Absensi</div>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->role === 'HRD')
+                    <li class="menu-item">
+                        <a href="{{ route('intern.index') }}" class="menu-link active ">
+                            <div>Data Anggota Magang</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('divisi.index') }}" class="menu-link">
+                            <div>Divisi Magang</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
+                            <div>Absensi</div>
+                        </a>
+                    </li>
+                @else
+                    <li class="menu-item">
+                        <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
+                            <div>Absensi</div>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </li>
     </ul>

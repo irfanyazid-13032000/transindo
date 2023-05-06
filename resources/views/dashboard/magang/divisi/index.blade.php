@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('title', 'Divisi Magang')
 @section('content')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Data Divisi Magang</h4>
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Divisi Magang</h4>
     <div class="card">
         <h5 class="card-header">Data Divisi Magang Lokpro</h5>
         <div class="d-flex justify-content-start ms-4">
