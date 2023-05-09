@@ -30,7 +30,20 @@ class AbsensiController extends Controller
      */
     public function store(StoreAbsensiRequest $request)
     {
-        //
+        $data = [
+            'tanggal' => now()->format('Y-m-d'),
+            'nama' => auth()->user()->name,
+            'email' => auth()->user()->email,
+            'posisi' => auth()->user()->position,
+            'jam_masuk' => now()->format('H:i:s'),
+        ];
+        $old_data = Absensi::where('tanggal', $data['tanggal'])->where('email', auth()->user()->email)->first();
+        if ($old_data != null && auth()->user()->role === 'Intern') {
+            return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Masuk Hari Ini');
+        } else {
+            Absensi::create($data);
+            return redirect()->route('absensi.show', auth()->user()->email)->with('success', 'Absensi Masuk Berhasil Dicatat');
+        }
     }
 
     /**
@@ -48,7 +61,7 @@ class AbsensiController extends Controller
      */
     public function edit(Absensi $absensi)
     {
-        //
+        return view('dashboard.magang.absensi.edit', ['absensi' => $absensi]);
     }
 
     /**
@@ -56,7 +69,25 @@ class AbsensiController extends Controller
      */
     public function update(UpdateAbsensiRequest $request, Absensi $absensi)
     {
-        //
+        $data = $request->validate(
+            [
+                'aktivitas' => 'required|string|max:255',
+            ]
+        );
+
+        $data['tanggal'] = $absensi->tanggal;
+        $data['nama'] = auth()->user()->name;
+        $data['email'] = auth()->user()->email;
+        $data['posisi'] = auth()->user()->position;
+        $data['jam_masuk'] = $absensi->jam_masuk;
+        $data['jam_keluar'] = now()->format('H:i:s');
+
+        if (auth()->user()->role === 'Intern' && $absensi->jam_keluar != null) {
+            return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Keluar Hari Ini');
+        } else {
+            $absensi->update($data);
+            return redirect()->route('absensi.show', auth()->user()->email)->with('success', 'Absensi Keluar Berhasil Dicatat');
+        }
     }
 
     /**

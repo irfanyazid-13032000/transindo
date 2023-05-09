@@ -16,7 +16,7 @@ class AbsensiSeeder extends Seeder
         $absensi = [
             [
                 'id' => 1,
-                'tanggal' => now()->format('Y-m-d'),
+                'tanggal' => '2021-08-01',
                 'nama' => 'Rudi',
                 'email' => 'rudi@mail.com',
                 'posisi' => 'Laravel',
@@ -27,7 +27,7 @@ class AbsensiSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'tanggal' => now()->format('Y-m-d'),
+                'tanggal' => '2021-08-05',
                 'name' => 'Cindy',
                 'email' => 'cindy@mail.com',
                 'posisi' => 'Design',

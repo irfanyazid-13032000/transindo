@@ -1,12 +1,34 @@
 @extends('layouts.app')
 @section('title', 'Data Absensi')
 @section('content')
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Data Absensi</h4>
-    <div class="card">
-        <h5 class="card-header">Data Absensi Intern Lokpro</h5>
-        <div class="d-flex justify-content-start ms-4">
-            <a href="{{ route('absensi.create') }}" class="btn btn-primary">Isi Absen</a>
+    @if (session()->has('success'))
+        <div class="bs-toast toast fade show bg-primary float-end" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bx bx-bell me-2"></i>
+                <div class="me-auto fw-semibold">Notifikasi</div>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ session('success') }}
+            </div>
         </div>
+    @endif
+
+    @if (session()->has('error'))
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Absensi Harian Lokpro Media</h4>
+    <div class="d-flex justify-content-start mb-4 ms-1">
+        <form action="{{ route('absensi.store') }}" method="POST">
+            @csrf
+            <button class="btn btn-primary" type="submit">Isi Absen Masuk</button>
+        </form>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Data Absensi Harian Kamu</h5>
         <div class="table-responsive text-nowrap p-4">
             <table class="table table-hover" id="table">
                 <thead>
@@ -38,7 +60,7 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('intern.edit', $abs->id) }}"><i
+                                        <a class="dropdown-item" href="{{ route('absensi.edit', $abs->id) }}"><i
                                                 class="bx bx-edit-alt me-1"></i> Isi Absen Pulang</a>
                                     </div>
                                 </div>

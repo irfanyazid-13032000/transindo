@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('posisi');
             $table->time('jam_masuk');
             $table->time('jam_keluar')->nullable();
-            $table->string('aktivitas');
+            $table->string('aktivitas')->nullable();
             $table->timestamps();
         });
     }
