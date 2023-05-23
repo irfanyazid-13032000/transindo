@@ -51,7 +51,7 @@
                             @if ($mag->sertifikat == null)
                                 <td><span class="badge bg-label-danger me-1">Belum Ada</span></td>
                             @else
-                                <td><a href="{{ $mag->sertifikat }}">Serifikat | {{ $mag->nama }}</a></td>
+                                <td><a href="{{ $mag->sertifikat }}">Sertifikat | {{ $mag->nama }}</a></td>
                             @endif
                             <td>
                                 <div class="dropdown">

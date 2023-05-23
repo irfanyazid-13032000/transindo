@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\FillPDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/', function () {
 })->middleware('auth');
 
 Route::resource('intern', MagangController::class)->middleware('adminhr');
+Route::get('create-pdf',[FillPDFController::class, 'process'])->middleware('adminhr');
 Route::resource('divisi', DivisiController::class)->middleware('adminhr');
 
 // Route::resource('absensi', AbsensiController::class)->middleware('auth');
