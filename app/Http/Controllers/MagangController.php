@@ -6,6 +6,9 @@ use App\Models\Divisi;
 use App\Models\Magang;
 use App\Http\Requests\StoreMagangRequest;
 use App\Http\Requests\UpdateMagangRequest;
+use Illuminate\Http\Request;
+use setasign\Fpdi\Fpdi;
+
 
 class MagangController extends Controller
 {
@@ -116,4 +119,6 @@ class MagangController extends Controller
         $magang->where('id', $idmagang)->delete();
         return redirect()->route('intern.index')->with('success', 'Data berhasil dihapus');
     }
+
+
 }

@@ -51,7 +51,16 @@
                             @if ($mag->sertifikat == null)
                                 <td><span class="badge bg-label-danger me-1">Belum Ada</span></td>
                             @else
-                                <td><a href="{{ $mag->sertifikat }}">Sertifikat | {{ $mag->nama }}</a></td>
+                                
+
+                                <td>
+                                    <form action="{{ route('sertifikat',$mag->id) }}"  method="POST">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="dropdown-item"><i class="bx bx-print me-1"></i>
+                                            Sertifikat</button>
+                                    </form>
+                                </td>
                             @endif
                             <td>
                                 <div class="dropdown">
