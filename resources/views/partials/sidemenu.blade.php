@@ -32,6 +32,11 @@
 
             <ul class="menu-sub">
                 @if (Auth::user()->role === 'Admin')
+                <li class="menu-item">
+                    <a href="{{ route('users.index') }}" class="menu-link active">
+                        <div>User Management</div>
+                    </a>
+                </li>
                     <li class="menu-item">
                         <a href="{{ route('intern.index') }}" class="menu-link active ">
                             <div>Data Anggota Magang</div>
