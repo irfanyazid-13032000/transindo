@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use setasign\Fpdi\Fpdi;
 use App\Models\Magang;
-
+use App\Models\Divisi;
+use App\Models\User;
 class FillPDFController extends Controller
 {
    public function process($id){
@@ -50,4 +51,11 @@ class FillPDFController extends Controller
      $fpdi->Text($right_tgl,$top_tgl,$tgl);
      return $fpdi->Output($outputfile,'F');
    }
+
+   public function show($email)
+    {
+      $user = User::where('email', $email)->first();
+      return view('dashboard.magang.sertifikat.show', compact('user'));
+      
+    }
 }
