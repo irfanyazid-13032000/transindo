@@ -3,7 +3,10 @@
 @section('content')
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Data Absensi</h4>
     <div class="card">
-        <h5 class="card-header">Data Absensi Intern Lokpro</h5>
+        <div class="d-flex pe-4">
+            <h5 class="card-header">Data Absensi Intern Lokpro</h5>
+            <a href="{{ url('/ekspor-pdf') }}" target="_blank" class="btn btn-primary align-self-center ms-auto">Export PDF</a>
+        </div>
         <div class="table-responsive text-nowrap p-4">
             <table class="table table-hover" id="table">
                 <thead>
