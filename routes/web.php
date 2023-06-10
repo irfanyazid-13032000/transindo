@@ -40,6 +40,9 @@ Route::get('/absensi/{absensi}/edit', [AbsensiController::class, 'edit'])->name(
 Route::put('/absensi/{absensi}', [AbsensiController::class, 'update'])->name('absensi.update')->middleware('auth');
 Route::delete('/absensi/{absensi}', [AbsensiController::class, 'destroy'])->name('absensi.destroy')->middleware('admin');
 Route::get('/ekspor-pdf', [PdfController::class, 'eksporPDF'])->middleware('auth');
+Route::get('/ekspor-pdf/bulan', [PdfController::class, 'eksporPDFBulan'])->middleware('auth');
+Route::get('/ekspor-pdf/minggu', [PdfController::class, 'eksporPDFMinggu'])->middleware('auth');
+Route::get('/ekspor-pdf/hari', [PdfController::class, 'eksporPDFHari'])->middleware('auth');
 
 Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create')->middleware('auth');
