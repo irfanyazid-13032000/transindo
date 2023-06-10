@@ -24,9 +24,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('dashboard.index');
 })->middleware('auth');
-Route::get('/dashboard', [MagangController::class, 'showChart'])->name('dashboard.index');
-
-
 
 
 Route::resource('intern', MagangController::class)->middleware('adminhr');

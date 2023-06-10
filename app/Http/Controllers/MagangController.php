@@ -11,32 +11,32 @@ use App\Models\Magang;
 class MagangController extends Controller
 {
 
-    public function showChart()
-    {
-        $magang = Magang::all();
+    // public function showChart()
+    // {
+    //     $magang = Magang::select();
 
-        $laki_laki = $magang->where('jenis_kelamin', 'laki_laki')->count();
-    $perempuan = $magang->where('jenis_kelamin', 'perempuan')->count();
+    //     $laki_laki = $magang->where('jenis_kelamin', 'laki_laki')->count();
+    // $perempuan = $magang->where('jenis_kelamin', 'perempuan')->count();
 
-    // Hitung jumlah pengguna berdasarkan jenjang pendidikan
-    $smpCount = $magang->where('jenjang_pendidikan', 'SMP')->count();
-    $smaCount = $magang->where('jenjang_pendidikan', 'SMA')->count();
-    $smkCount = $magang->where('jenjang_pendidikan', 'SMK')->count();
-    $d3Count = $magang->where('jenjang_pendidikan', 'D3')->count();
-    $s1Count = $magang->where('jenjang_pendidikan', 'S1')->count();
-    $s2Count = $magang->where('jenjang_pendidikan', 'S2')->count();
+    // // Hitung jumlah pengguna berdasarkan jenjang pendidikan
+    // $smpCount = $magang->where('jenjang_pendidikan', 'SMP')->count();
+    // $smaCount = $magang->where('jenjang_pendidikan', 'SMA')->count();
+    // $smkCount = $magang->where('jenjang_pendidikan', 'SMK')->count();
+    // $d3Count = $magang->where('jenjang_pendidikan', 'D3')->count();
+    // $s1Count = $magang->where('jenjang_pendidikan', 'S1')->count();
+    // $s2Count = $magang->where('jenjang_pendidikan', 'S2')->count();
 
-    return view('dashboard.index', [
-        'laki_laki' => $laki_laki,
-        'perempuan' => $perempuan,
-        'smpCount' => $smpCount,
-        'smaCount' => $smaCount,
-        'smkCount' => $smkCount,
-        'd3Count' => $d3Count,
-        's1Count' => $s1Count,
-        's2Count' => $s2Count,
-    ]);
-    }
+    // return view('dashboard.index', [
+    //     'laki_laki' => $laki_laki,
+    //     'perempuan' => $perempuan,
+    //     'smpCount' => $smpCount,
+    //     'smaCount' => $smaCount,
+    //     'smkCount' => $smkCount,
+    //     'd3Count' => $d3Count,
+    //     's1Count' => $s1Count,
+    //     's2Count' => $s2Count,
+    // ]);
+    // }
 
     /**
      * Display a listing of the resource.
