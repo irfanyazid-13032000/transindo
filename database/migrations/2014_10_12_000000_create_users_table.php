@@ -18,7 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('role')->default('Intern');
-            $table->string('position');
+            // $table->string('position');
+            // $table->string('jenis_kelamin');
+            // $table->string('jenjang_pendidikan');
             $table->string('status')->default('Aktif');
             $table->rememberToken();
             $table->timestamps();

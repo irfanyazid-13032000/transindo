@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Divisi;
 use App\Http\Requests\StoreDivisiRequest;
 use App\Http\Requests\UpdateDivisiRequest;
+use App\Models\Divisi;
 
 class DivisiController extends Controller
 {
@@ -14,6 +14,7 @@ class DivisiController extends Controller
     public function index()
     {
         $divisi = Divisi::all();
+
         return view('dashboard.magang.divisi.index', ['divisi' => $divisi]);
     }
 
@@ -41,6 +42,7 @@ class DivisiController extends Controller
         }
 
         Divisi::create($request->validate($rules));
+
         return redirect()->route('divisi.index')->with('success', 'Divisi berhasil ditambahkan');
     }
 
@@ -58,6 +60,7 @@ class DivisiController extends Controller
     public function edit($id)
     {
         $data = Divisi::findorfail($id);
+
         return view('dashboard.magang.divisi.edit', ['divisi' => $data]);
     }
 
@@ -78,6 +81,7 @@ class DivisiController extends Controller
         }
 
         $divisi->update($request->validate($rules));
+
         return redirect()->route('divisi.index')->with('success', 'Divisi berhasil diubah');
     }
 
@@ -87,6 +91,7 @@ class DivisiController extends Controller
     public function destroy(Divisi $divisi)
     {
         $divisi->delete();
+
         return redirect()->route('divisi.index')->with('success', 'Divisi berhasil dihapus');
     }
 }

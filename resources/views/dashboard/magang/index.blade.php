@@ -16,6 +16,7 @@
                         <th>Divisi</th>
                         <th>Email</th>
                         <th>No. Telp</th>
+                        <th>Jenis Kelamin</th>
                         <th>NIM</th>
                         <th>Jenjang Pendidikan</th>
                         <th>Jurusan</th>
@@ -36,6 +37,7 @@
                             <td>{{ $mag->divisi }}</td>
                             <td>{{ $mag->email }}</td>
                             <td>{{ $mag->no_hp }}</td>
+                            <td>{{ $mag->jenis_kelamin }}</td>
                             <td>{{ $mag->nim }}</td>
                             <td>{{ $mag->jenjang_pendidikan }}</td>
                             <td>{{ $mag->jurusan }}</td>

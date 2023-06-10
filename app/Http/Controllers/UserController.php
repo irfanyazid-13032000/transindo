@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Divisi;
+use App\Models\Magang;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use TheSeer\Tokenizer\Exception;
 
 class UserController extends Controller
 {
     public function index()
     {
         $user = User::all();
-        return view('users.index', ['users' => $user]);
+        return view('users.index', ['user' => $user]);
     }
 
     public function create()
@@ -22,52 +26,86 @@ class UserController extends Controller
         
     }
 
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-        $rules = 
-        [ 
-            'name' => 'required|string|max:255',
-            'email' =>'required|string|email|max:255|unique:users',
-            'password' =>'required',
-            'divisi' => 'required|string|max:255',
-            'status' => 'required|string|max:255',
+        $rules = [
+            'name'=>$request->name,
+            'email'=>$request->email,
+            'password'=>$request->password,
+            'divisi'=>$request->divisi
+            
         ];
-
-        User::create($request->validate($rules));
+        $rules['password'] = bcrypt($rules['password']);
+        User::create($rules);
         return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
         
     }
     
-    public function show($id)
+    public function show(user $user)
     {
         //
     }
     
-    public function edit($id)
+    public function edit($iduser)
     {
         
         $divisi = Divisi::all();
-        $data = User::findorfail($id);
-        return view('dashboard.magang.edit', ['magang' => $data, 'divisi' => $divisi]);
+        $data = User::findorfail($iduser);
+        return view('users.edit', ['user' => $data, 'divisi' => $divisi]);
     }
 
-    public function update(Request $request, user $user)
+    public function update(UpdateUserRequest $request, user $user, $id)
     {
-        $user = User::findorfail($user);
-        if($request->input('password')){
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->password = bcrypt($request->password);
-            $user->divisi = $request->input('divisi');
-            $user->status = $request->input('status');
-        } else {
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
-            $user->divisi = $request->input('divisi');
-            $user->status = $request->input('status');
-        }
-        $user->update();
-        return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
+        $user = User::findorfail($id);
+        
+            $user->update(
+            [ 
+                'name' => $request->name,
+                'email' => $request->email,
+                // 'password' => $request->password,
+                'divisi' => $request->divisi,
+               'status' => $request->status,
+
+               
+               $user->save($request->all())
+            ]);
+            if ($request->password!= $user->password) {
+                $user['password'] ='required|string|min:6|confirmed';
+            } else {
+                $user['password'] ='required|string|min:6|confirmed';
+            }
+            //  dd($request);
+            return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
+        
+        // $old_data = $user->where('id', $id)->first();
+        // $rules =
+        //     [
+        //         'nama' => 'required|string|max:255',
+        //         // 'email' => 'required|string|max:255',
+        //         // 'password' => 'required',
+        //         'divisi' => 'required|string|max:255',
+                
+        //         // 'jenis_kelamin' => 'required|string|max:255',
+        //         // 'jenjang_pendidikan' => 'required|max:255',
+        //         'status' => 'required|string|max:255',
+        //     ];
+
+
+        // if ($request->email != $old_data->email) {
+        //     $rules['email'] = 'required|email|unique:users,email|max:255';
+        // } else {
+        //     $rules['email'] = 'required|email|max:255';
+        // }
+        // if ($request->password!= $old_data->password) {
+        //     $rules['password'] ='required|string|min:6|confirmed';
+        // } else {
+        //     $rules['password'] ='required|string|min:6|confirmed';
+        // }
+        
+        // User::whereId($id)->update($request->validate($rules));
+
+        // return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
+        
     }
 
     public function destroy(user $user)

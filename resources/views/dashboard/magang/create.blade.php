@@ -54,6 +54,13 @@
                             @enderror
                         </div>
                         <div class="mb-3">
+                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                            <select name="jenis_kelamin" id="jenis_kelamin" class="form-select" aria-label="status" required>
+                                <option value="Laki-Laki" {{ $div->jenis_kelamin == 'Laki-Laki' ? 'selected' : '' }}>Laki-Laki</option>
+                                <option value="Perempuan" {{ $div->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="nim" class="form-label">NIM</label>
                             <input type="text" class="form-control" id="nim" name="nim" required>
                             @error('nim')

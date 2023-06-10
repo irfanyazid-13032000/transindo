@@ -18,10 +18,10 @@
                     <form action="{{ route('users.store') }}" method="POST" >
                         @csrf
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama') }}" required>
-                            @error('nama')
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ old('name') }}" required>
+                            @error('name')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
@@ -53,7 +53,15 @@
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-                        
+                        {{-- 
+                        <div class="mb-3">
+                            <label for="jenjang_pendidikan" class="form-label">Jenjang Pendidikan</label>
+                            <input type="text" class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan"
+                                required>
+                            @error('jenjang_pendidikan')
+                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
+                            @enderror
+                        </div> --}}
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" id="status" name="status" aria-label="status"

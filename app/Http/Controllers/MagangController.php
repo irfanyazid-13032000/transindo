@@ -2,22 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Divisi;
-use App\Models\Magang;
 use App\Http\Requests\StoreMagangRequest;
 use App\Http\Requests\UpdateMagangRequest;
-use Illuminate\Http\Request;
-use setasign\Fpdi\Fpdi;
+use App\Models\Divisi;
+use App\Models\Magang;
 
 
 class MagangController extends Controller
 {
+
+    public function showChart()
+    {
+        $magang = Magang::all();
+
+        $laki_laki = $magang->where('jenis_kelamin', 'laki_laki')->count();
+    $perempuan = $magang->where('jenis_kelamin', 'perempuan')->count();
+
+    // Hitung jumlah pengguna berdasarkan jenjang pendidikan
+    $smpCount = $magang->where('jenjang_pendidikan', 'SMP')->count();
+    $smaCount = $magang->where('jenjang_pendidikan', 'SMA')->count();
+    $smkCount = $magang->where('jenjang_pendidikan', 'SMK')->count();
+    $d3Count = $magang->where('jenjang_pendidikan', 'D3')->count();
+    $s1Count = $magang->where('jenjang_pendidikan', 'S1')->count();
+    $s2Count = $magang->where('jenjang_pendidikan', 'S2')->count();
+
+    return view('dashboard.index', [
+        'laki_laki' => $laki_laki,
+        'perempuan' => $perempuan,
+        'smpCount' => $smpCount,
+        'smaCount' => $smaCount,
+        'smkCount' => $smkCount,
+        'd3Count' => $d3Count,
+        's1Count' => $s1Count,
+        's2Count' => $s2Count,
+    ]);
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $magang = Magang::all();
+
         return view('dashboard.magang.index', ['magang' => $magang]);
     }
 
@@ -27,6 +54,7 @@ class MagangController extends Controller
     public function create()
     {
         $divisi = Divisi::all();
+
         return view('dashboard.magang.create', ['divisi' => $divisi]);
     }
 
@@ -40,6 +68,7 @@ class MagangController extends Controller
             'divisi' => 'required|string|max:255',
             'email' => 'required|email|unique:magangs,email|max:255',
             'no_hp' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
             'jenjang_pendidikan' => 'required|max:255',
             'jurusan' => 'required|string|max:255',
@@ -55,6 +84,7 @@ class MagangController extends Controller
         }
 
         Magang::create($request->validate($rules));
+
         return redirect()->route('intern.index')->with('success', 'Data berhasil ditambahkan');
     }
 
@@ -73,6 +103,7 @@ class MagangController extends Controller
     {
         $divisi = Divisi::all();
         $data = Magang::findorfail($idmagang);
+
         return view('dashboard.magang.edit', ['magang' => $data, 'divisi' => $divisi]);
     }
 
@@ -108,6 +139,7 @@ class MagangController extends Controller
         }
 
         Magang::whereId($idmagang)->update($request->validate($rules));
+
         return redirect()->route('intern.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -117,8 +149,7 @@ class MagangController extends Controller
     public function destroy(Magang $magang, $idmagang)
     {
         $magang->where('id', $idmagang)->delete();
+
         return redirect()->route('intern.index')->with('success', 'Data berhasil dihapus');
     }
-
-
 }

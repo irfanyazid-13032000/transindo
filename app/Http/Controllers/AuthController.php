@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Divisi;
-use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -17,7 +17,6 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-
 
     /**
      * Handle an authentication attempt.
@@ -57,6 +56,7 @@ class AuthController extends Controller
     public function register(): \Illuminate\View\View
     {
         $divisi = Divisi::all();
+
         return view('auth.register', ['divisi' => $divisi]);
     }
 

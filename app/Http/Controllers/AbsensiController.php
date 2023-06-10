@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Absensi;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
+use App\Models\Absensi;
 
 class AbsensiController extends Controller
 {
@@ -14,6 +14,7 @@ class AbsensiController extends Controller
     public function index()
     {
         $absensi = Absensi::all();
+
         return view('dashboard.magang.absensi.index', ['absensi' => $absensi]);
     }
 
@@ -42,6 +43,7 @@ class AbsensiController extends Controller
             return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Masuk Hari Ini');
         } else {
             Absensi::create($data);
+
             return redirect()->route('absensi.show', auth()->user()->email)->with('success', 'Absensi Masuk Berhasil Dicatat');
         }
     }
@@ -86,6 +88,7 @@ class AbsensiController extends Controller
             return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Keluar Hari Ini');
         } else {
             $absensi->update($data);
+
             return redirect()->route('absensi.show', auth()->user()->email)->with('success', 'Absensi Keluar Berhasil Dicatat');
         }
     }

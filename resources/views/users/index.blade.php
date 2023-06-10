@@ -21,23 +21,27 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Divisi</th>
-                        <th>Position</th>                  
+                        {{-- <th>Posisi</th> --}}
+                        {{-- <th>Jenis Kelamin</th>
+                        <th>Jenjang Pendidikan</th>                    --}}
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody class="table-border-bottom-0">
-                    @foreach ($users as $user)
+                <tbody class="table-border-bottom-0" id="table">
+                    @foreach ($user as $key => $items)
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>{{ $user->position }}</td>
-                            @if ($user->status == 'Aktif')
-                                <td><span class="badge bg-label-success me-1">{{ $user->status }}</span></td>
+                            <td id="name">{{ $items->name }}</td>
+                            <td>{{ $items->email }}</td>
+                            <td id="role">{{ $items->role }}</td>
+                            {{-- <td id="position">{{ $items->position }}</td> --}}
+                            {{-- <td>{{ $items->jenis_kelamin }}</td>
+                            <td>{{ $items->jenjang_pendidikan }}</td> --}}
+                            @if ($items->status == 'Aktif')
+                                <td><span class="badge bg-label-success me-1">{{ $items->status }}</span></td>
                             @else
-                                <td><span class="badge bg-label-danger me-1">{{ $user->status }}</span></td>
+                                <td><span class="badge bg-label-danger me-1">{{ $items->status }}</span></td>
                             @endif
                             <td>
                                 <div class="dropdown">
@@ -46,9 +50,9 @@
                                         <i class="bx bx-dots-vertical-rounded"></i>
                                     </button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('users.edit', $user->id ) }}"><i
+                                        <a class="dropdown-item" href="{{ route('users.edit', $items->id ) }}"><i
                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
-                                        <form action="{{ route('users.destroy' , $user->id) }}" method="POST">
+                                        <form action="{{ route('users.destroy' , $items->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="dropdown-item" onclick="return confirm('Are you sure you want to delete this user?')"><i class="bx bx-trash me-1"></i>
@@ -74,5 +78,12 @@
     <script src="{{ url('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
     <script>
         let table = new DataTable('#table');
+    </script>
+    <script>
+        $(document).on('click', '.edit_user', function()
+        {
+            var _this = $(this).parents('tr');
+            $('#nama').val(_this.find('.nama').text());)
+        });
     </script>
 @endpush
