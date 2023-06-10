@@ -24,10 +24,11 @@
         </li>
 
         <!-- Layouts -->
+        @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'HRD' )
         <li class="menu-item @if (request()->is('intern') || request()->is('divisi') || request()->is('absensi')) active @endif">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-user-badge"></i>
-                <div data-i18n="Layouts">Internship</div>
+                <i class="menu-icon tf-icons bx bxs-user-check"></i>
+                <div data-i18n="Layouts">Management </div>
             </a>
 
             <ul class="menu-sub">
@@ -82,6 +83,30 @@
                 @endif
             </ul>
         </li>
+       @endif
+    <!-- / Kegiatan -->
+    <li class="menu-item @if (request()->is('intern') || request()->is('divisi') || request()->is('absensi')) active @endif">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class="menu-icon tf-icons bx bxs-user-badge"></i>
+            <div data-i18n="Layouts">Activity</div>
+        </a>
+
+        <ul class="menu-sub">
+           
+                <li class="menu-item">
+                    <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
+                        <div>Absensi</div>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="{{ route('sertifikat.show', Auth::user()->email) }}" class="menu-link">
+                        <div>Cetak Sertifikat   </div>
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+   
     </ul>
 </aside>
 <!-- / Menu -->
