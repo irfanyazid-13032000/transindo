@@ -13,7 +13,7 @@ class FillPDFController extends Controller
 
         $data = User::where('id', $id)->first();
         $nama = $data['name'];
-        $divisi = $data->divisi->nama;
+        $divisi = $data->divisi->name;
         $tgl_in = $data['tanggal_masuk'];
         $tgl_out = $data['tanggal_keluar'];
         $tgl = $tgl_in.' s/d '.$tgl_out;

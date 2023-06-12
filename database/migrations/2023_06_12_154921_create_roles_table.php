@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensis', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal')->default(now()->format('Y-m-d'));
-            $table->string('user_id');
-            $table->time('jam_masuk');
-            $table->time('jam_keluar')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensis');
+        Schema::dropIfExists('roles');
     }
 };

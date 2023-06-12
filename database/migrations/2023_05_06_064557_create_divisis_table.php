@@ -13,8 +13,7 @@ return new class extends Migration
     {
         Schema::create('divisis', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->integer('jumlah_anggota')->default(0);
+            $table->string('name');
             $table->timestamps();
         });
     }

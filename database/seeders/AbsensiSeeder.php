@@ -20,7 +20,7 @@ class AbsensiSeeder extends Seeder
                 'user_id' => '1',
                 'jam_masuk' => '08:00:00',
                 'jam_keluar' => '17:00:00',
-                'aktivitas' => 'Mengerjakan tugas Laravel',
+                'deskripsi' => 'Mengerjakan tugas Laravel',
                 'created_at' => now(),
             ],
             [
@@ -29,7 +29,7 @@ class AbsensiSeeder extends Seeder
                 'user_id' => '2',
                 'jam_masuk' => '08:00:00',
                 'jam_keluar' => '17:00:00',
-                'aktivitas' => 'Mengerjakan tugas Design',
+                'deskripsi' => 'Mengerjakan tugas Design',
                 'created_at' => now(),
             ],
         ];

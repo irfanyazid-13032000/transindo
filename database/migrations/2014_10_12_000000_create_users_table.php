@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role')->default('Intern');
+            $table->string('role')->default('User');
             $table->string('divisi_id');
             $table->string('no_hp');
             $table->string('jenis_kelamin');

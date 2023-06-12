@@ -16,50 +16,50 @@ class DivisiSeeder extends Seeder
         $divisi = [
             [
                 'id' => 1,
-                'nama' => 'Laravel',
-                'jumlah_anggota' => 1,
+                'name' => 'Laravel',
+               
                 'created_at' => now(),
             ],
             [
                 'id' => 2,
-                'nama' => 'HRD',
-                'jumlah_anggota' => 0,
+                'name' => 'HRD',
+                
                 'created_at' => now(),
             ],
             [
                 'id' => 3,
-                'nama' => 'Content Creator',
-                'jumlah_anggota' => 1,
+                'name' => 'Content Creator',
+               
                 'created_at' => now(),
             ],
             [
                 'id' => 4,
-                'nama' => 'Content Research',
-                'jumlah_anggota' => 0,
+                'name' => 'Content Research',
+                
                 'created_at' => now(),
             ],
             [
                 'id' => 5,
-                'nama' => 'Social Media',
-                'jumlah_anggota' => 0,
+                'name' => 'Social Media',
+               
                 'created_at' => now(),
             ],
             [
                 'id' => 6,
-                'nama' => 'Design',
-                'jumlah_anggota' => 0,
+                'name' => 'Design',
+                
                 'created_at' => now(),
             ],
             [
                 'id' => 7,
-                'nama' => 'Moderator',
-                'jumlah_anggota' => 0,
+                'name' => 'Moderator',
+                
                 'created_at' => now(),
             ],
             [
                 'id' => 8,
-                'nama' => 'Public Relation',
-                'jumlah_anggota' => 0,
+                'name' => 'Public Relation',
+              
                 'created_at' => now(),
             ],
         ];
