@@ -99,7 +99,7 @@
                     </a>
                 </li>
                 <li class="menu-item">
-                    <a href="{{ route('sertifikat.show', Auth::user()->email) }}" class="menu-link">
+                    <a href="" class="menu-link">
                         <div>Cetak Sertifikat   </div>
                     </a>
                 </li>
