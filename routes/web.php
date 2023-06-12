@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\AbsensiController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\DivisiController;
-use App\Http\Controllers\FillPDFController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\MagangController;
+use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\FillPDFController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,10 +24,12 @@ Route::get('/', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
-
 Route::resource('intern', MagangController::class)->middleware('adminhr');
 Route::post('/sertifikat/{id}',[FillPDFController::class, 'process'])->name('sertifikat')->middleware('adminhr');
+Route::get('/sertifikat/{email}',[FillPDFController::class, 'show'])->name('sertifikat.show')->middleware('adminhr');
+Route::post('/sertifikat/{id}', [FillPDFController::class, 'process'])->name('sertifikat')->middleware('adminhr');
 Route::resource('divisi', DivisiController::class)->middleware('adminhr');
+//  Route::resource('users', UserController::class)->middleware('adminhr');
 
 // Route::resource('absensi', AbsensiController::class)->middleware('auth');
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index')->middleware('admin');
@@ -42,12 +44,12 @@ Route::get('/ekspor-pdf/bulan', [PdfController::class, 'eksporPDFBulan'])->middl
 Route::get('/ekspor-pdf/minggu', [PdfController::class, 'eksporPDFMinggu'])->middleware('auth');
 Route::get('/ekspor-pdf/hari', [PdfController::class, 'eksporPDFHari'])->middleware('auth');
 
- Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
- Route::get('/users/create', [UserController::class, 'create'])->name('users.create')->middleware('auth');
- Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
- Route::get('/users/{user}', [UserController::class,'edit'])->name('users.edit')->middleware('auth');
- Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
- Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('admin');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create')->middleware('auth');
+Route::post('/users', [UserController::class, 'store'])->name('users.store')->middleware('auth');
+Route::get('/users/{user}', [UserController::class, 'edit'])->name('users.edit')->middleware('auth');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('auth');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')->middleware('admin');
 
 Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login-post')->middleware('guest');
