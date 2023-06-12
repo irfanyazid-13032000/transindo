@@ -14,9 +14,7 @@ return new class extends Migration
         Schema::create('absensis', function (Blueprint $table) {
             $table->id();
             $table->date('tanggal')->default(now()->format('Y-m-d'));
-            $table->string('nama');
-            $table->string('email');
-            $table->string('posisi');
+            $table->string('user_id');
             $table->time('jam_masuk');
             $table->time('jam_keluar')->nullable();
             $table->string('aktivitas')->nullable();

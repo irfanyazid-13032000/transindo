@@ -17,9 +17,7 @@ class AbsensiSeeder extends Seeder
             [
                 'id' => 1,
                 'tanggal' => '2021-08-01',
-                'nama' => 'Rudi',
-                'email' => 'rudi@mail.com',
-                'posisi' => 'Laravel',
+                'user_id' => '1',
                 'jam_masuk' => '08:00:00',
                 'jam_keluar' => '17:00:00',
                 'aktivitas' => 'Mengerjakan tugas Laravel',
@@ -28,9 +26,7 @@ class AbsensiSeeder extends Seeder
             [
                 'id' => 2,
                 'tanggal' => '2021-08-05',
-                'name' => 'Cindy',
-                'email' => 'cindy@mail.com',
-                'posisi' => 'Design',
+                'user_id' => '2',
                 'jam_masuk' => '08:00:00',
                 'jam_keluar' => '17:00:00',
                 'aktivitas' => 'Mengerjakan tugas Design',
