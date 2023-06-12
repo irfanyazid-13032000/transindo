@@ -56,7 +56,7 @@
                                 
 
                                 <td>
-                                    <form action="{{ route('sertifikat',$mag->id) }}"  method="POST">
+                                    <form action="/sertifikat/{{ $mag->id }}"  method="POST">
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="dropdown-item"><i class="bx bx-print me-1"></i>
