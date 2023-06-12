@@ -39,6 +39,8 @@
     });
         
         const ctx = document.getElementById('jenis_kelamin');
+
+        
         new Chart(ctx, {
           type: 'doughnut',
           data: {

@@ -74,38 +74,9 @@ class UserController extends Controller
             } else {
                 $user['password'] ='required|string|min:6|confirmed';
             }
-            //  dd($request);
+            
             return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
-        
-        // $old_data = $user->where('id', $id)->first();
-        // $rules =
-        //     [
-        //         'nama' => 'required|string|max:255',
-        //         // 'email' => 'required|string|max:255',
-        //         // 'password' => 'required',
-        //         'divisi' => 'required|string|max:255',
-                
-        //         // 'jenis_kelamin' => 'required|string|max:255',
-        //         // 'jenjang_pendidikan' => 'required|max:255',
-        //         'status' => 'required|string|max:255',
-        //     ];
-
-
-        // if ($request->email != $old_data->email) {
-        //     $rules['email'] = 'required|email|unique:users,email|max:255';
-        // } else {
-        //     $rules['email'] = 'required|email|max:255';
-        // }
-        // if ($request->password!= $old_data->password) {
-        //     $rules['password'] ='required|string|min:6|confirmed';
-        // } else {
-        //     $rules['password'] ='required|string|min:6|confirmed';
-        // }
-        
-        // User::whereId($id)->update($request->validate($rules));
-
-        // return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
-        
+           
     }
 
     public function destroy(user $user)
