@@ -45,14 +45,14 @@
         </div>
 
         <div class="wrap-input100 validate-input" data-validate="Masukkan Posisi Anda dengan Benar!">
-            <select name="position" class="input100 position" style="border: none; outline:none;">
+            <select name="divisi" class="input100 divisi" style="border: none; outline:none;">
                 @foreach ($divisi as $div)
-                    <option class="text-dark" value="{{ $div->nama }}">{{ $div->nama }}</option>
+                    <option class="text-dark" value="{{ $div->name }}">{{ $div->name }}</option>
                 @endforeach
             </select>
             <span class="focus-input100" data-placeholder="&#xf207;"></span>
-            @if ($errors->has('position'))
-                <p class="text-danger">{{ $errors->first('position') }}</p>
+            @if ($errors->has('divisi'))
+                <p class="text-danger">{{ $errors->first('divisi') }}</p>
             @endif
         </div>
 

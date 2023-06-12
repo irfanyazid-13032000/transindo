@@ -32,7 +32,7 @@ class DivisiController extends Controller
     public function store(StoreDivisiRequest $request)
     {
         $rules = [
-            'nama' => 'required|string|max:255|unique:divisis,nama',
+            'name' => 'required|string|max:255|unique:divisis,name',
         ];
 
         if ($request->jumlah_anggota != null) {
@@ -75,9 +75,9 @@ class DivisiController extends Controller
         ];
 
         if ($request->nama != $old_name) {
-            $rules['nama'] = 'required|string|max:255|unique:divisis,nama';
+            $rules['name'] = 'required|string|max:255|unique:divisis,name';
         } else {
-            $rules['nama'] = 'required|string|max:255';
+            $rules['name'] = 'required|string|max:255';
         }
 
         $divisi->update($request->validate($rules));

@@ -17,10 +17,10 @@
                     <form action="{{ route('divisi.store') }}" method="POST">
                         @csrf
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama Divisi</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama') }}" required>
-                            @error('nama')
+                            <label for="name" class="form-label">Nama Divisi</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ old('name') }}" required>
+                            @error('name')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>

@@ -5,11 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
-use App\Models\Divisi;
-use App\Models\Magang;
+use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use TheSeer\Tokenizer\Exception;
 
 class UserController extends Controller
 {
@@ -21,9 +18,9 @@ class UserController extends Controller
 
     public function create()
     {
-        $divisi = Divisi::all();
-        return view('users.create', ['divisi' => $divisi]);
-        
+        $role = Role::all();
+        return view('users.create', ['role' => $role]);
+
     }
 
     public function store(StoreUserRequest $request)
@@ -32,51 +29,43 @@ class UserController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$request->password,
-            'divisi'=>$request->divisi
-            
+            'role'=>$request->role
+
         ];
         $rules['password'] = bcrypt($rules['password']);
         User::create($rules);
         return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
-        
+
     }
-    
+
     public function show(user $user)
     {
         //
     }
-    
+
     public function edit($iduser)
     {
-        
-        $divisi = Divisi::all();
+
+        $role = Role::all();
         $data = User::findorfail($iduser);
-        return view('users.edit', ['user' => $data, 'divisi' => $divisi]);
+        return view('users.edit', ['user' => $data, 'role' => $role]);
     }
 
-    public function update(UpdateUserRequest $request, user $user, $id)
+    public function update(UpdateUserRequest $request, $id)
     {
         $user = User::findorfail($id);
-        
-            $user->update(
-            [ 
-                'name' => $request->name,
-                'email' => $request->email,
-                // 'password' => $request->password,
-                'divisi' => $request->divisi,
-               'status' => $request->status,
 
-               
-               $user->save($request->all())
-            ]);
-            if ($request->password!= $user->password) {
-                $user['password'] ='required|string|min:6|confirmed';
-            } else {
-                $user['password'] ='required|string|min:6|confirmed';
-            }
-            
-            return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
-           
+        $user->update(
+            [
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role,
+            'status' => $request->status,
+
+            $user->save($request->all())
+            ]
+        );
+        return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
     }
 
     public function destroy(user $user)

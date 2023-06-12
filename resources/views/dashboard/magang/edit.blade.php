@@ -30,8 +30,8 @@
                             <select class="form-select" id="divisi" name="divisi" aria-label="divisi" required>
                                 <option value="{{ $magang->divisi }}">{{ $magang->divisi }}</option>
                                 @foreach ($divisi as $div)
-                                    @if ($div->nama != $magang->divisi)
-                                        <option value="{{ $div->nama }}">{{ $div->nama }}</option>
+                                    @if ($div->name != $magang->divisi)
+                                        <option value="{{ $div->name }}">{{ $div->name }}</option>
                                     @endif
                                 @endforeach
                             </select>

@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMagangRequest;
 use App\Http\Requests\UpdateMagangRequest;
 use App\Models\Divisi;
 use App\Models\Magang;
+use App\Models\User;
 
 
 class MagangController extends Controller
@@ -15,7 +16,7 @@ class MagangController extends Controller
      */
     public function index()
     {
-        $magang = Magang::all();
+        $magang = User::all();
 
         return view('dashboard.magang.index', ['magang' => $magang]);
     }
@@ -38,7 +39,7 @@ class MagangController extends Controller
         $rules = [
             'nama' => 'required|string|max:255',
             'divisi' => 'required|string|max:255',
-            'email' => 'required|email|unique:magangs,email|max:255',
+            'email' => 'required|email|unique:users,email|max:255',
             'no_hp' => 'required|string|max:255',
             'jenis_kelamin' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
@@ -55,7 +56,7 @@ class MagangController extends Controller
             $rules['sertifikat'] = 'max:255';
         }
 
-        Magang::create($request->validate($rules));
+        User::create($request->validate($rules));
 
         return redirect()->route('intern.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -74,7 +75,7 @@ class MagangController extends Controller
     public function edit($idmagang)
     {
         $divisi = Divisi::all();
-        $data = Magang::findorfail($idmagang);
+        $data = User::findorfail($idmagang);
 
         return view('dashboard.magang.edit', ['magang' => $data, 'divisi' => $divisi]);
     }
@@ -82,14 +83,15 @@ class MagangController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateMagangRequest $request, Magang $magang, $idmagang)
+    public function update(UpdateMagangRequest $request, Magang $user, $idmagang)
     {
-        $old_data = $magang->where('id', $idmagang)->first();
+        $old_data = $user->where('id', $idmagang)->first();
         $rules =
             [
                 'nama' => 'required|string|max:255',
                 'divisi' => 'required|string|max:255',
                 'no_hp' => 'required|string|max:255',
+                'jenis_kelamin' => 'required|string|max:255',
                 'nim' => 'required|string|max:255',
                 'jenjang_pendidikan' => 'required|max:255',
                 'jurusan' => 'required|string|max:255',

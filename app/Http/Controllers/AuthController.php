@@ -69,7 +69,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
-            'position' => 'required|string',
+            'divisi' => 'required|string',
         ]);
 
         $data['password'] = bcrypt($data['password']);

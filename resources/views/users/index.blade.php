@@ -20,10 +20,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Email</th>
-                        <th>Divisi</th>
-                        {{-- <th>Posisi</th> --}}
-                        {{-- <th>Jenis Kelamin</th>
-                        <th>Jenjang Pendidikan</th>                    --}}
+                        <th>Posisi</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -32,12 +29,9 @@
                     @foreach ($user as $key => $items)
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
-                            <td id="name">{{ $items->name }}</td>
+                            <td>{{ $items->name }}</td>
                             <td>{{ $items->email }}</td>
-                            <td id="role">{{ $items->role }}</td>
-                            {{-- <td id="position">{{ $items->position }}</td> --}}
-                            {{-- <td>{{ $items->jenis_kelamin }}</td>
-                            <td>{{ $items->jenjang_pendidikan }}</td> --}}
+                            <td>{{ $items->role }}</td>
                             @if ($items->status == 'Aktif')
                                 <td><span class="badge bg-label-success me-1">{{ $items->status }}</span></td>
                             @else
@@ -78,12 +72,5 @@
     <script src="{{ url('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
     <script>
         let table = new DataTable('#table');
-    </script>
-    <script>
-        $(document).on('click', '.edit_user', function()
-        {
-            var _this = $(this).parents('tr');
-            $('#nama').val(_this.find('.nama').text());)
-        });
     </script>
 @endpush

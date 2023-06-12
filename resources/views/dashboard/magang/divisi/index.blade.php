@@ -23,7 +23,7 @@
                     @foreach ($divisi as $div)
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $div->nama }}</td>
+                            <td>{{ $div->name }}</td>
                             <td>{{ $div->jumlah_anggota }}</td>
                             <td>{{ $div->created_at }}</td>
                             <td>{{ $div->updated_at == null ? 'Belum Diperbarui' : $div->updated_at }}</td>

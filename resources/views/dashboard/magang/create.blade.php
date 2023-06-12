@@ -30,7 +30,7 @@
                             <select class="form-select" id="divisi" name="divisi" aria-label="divisi"
                                 value="{{ old('divisi') }}" required>
                                 @foreach ($divisi as $div)
-                                    <option value="{{ $div->nama }}">{{ $div->nama }}</option>
+                                    <option value="{{ $div->name }}">{{ $div->name }}</option>
                                 @endforeach
                             </select>
                             @error('divisi')

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Magang extends Model
 {
-    use HasFactory;
+     use HasFactory;
 
-    protected $table = 'magangs';
+    // protected $table = 'magangs';
 
     protected $guarded = ['id'];
 

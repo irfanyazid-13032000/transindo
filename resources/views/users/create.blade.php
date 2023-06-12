@@ -42,26 +42,17 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="divisi" class="form-label">Divisi</label>
-                            <select class="form-select" id="divisi" name="divisi" aria-label="divisi"
-                                value="{{ old('divisi') }}" required>
-                                @foreach ($divisi as $div)
-                                    <option value="{{ $div->nama }}">{{ $div->nama }}</option>
+                            <label for="role" class="form-label">Divisi</label>
+                            <select class="form-select" id="role" name="role" aria-label="role"
+                                value="{{ old('role') }}" required>
+                                @foreach ($role as $data)
+                                    <option value="{{ $data->name }}">{{ $data->name }}</option>
                                 @endforeach
                             </select>
-                            @error('divisi')
+                            @error('role')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-                        {{-- 
-                        <div class="mb-3">
-                            <label for="jenjang_pendidikan" class="form-label">Jenjang Pendidikan</label>
-                            <input type="text" class="form-control" id="jenjang_pendidikan" name="jenjang_pendidikan"
-                                required>
-                            @error('jenjang_pendidikan')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div> --}}
                         <div class="mb-3">
                             <label for="status" class="form-label">Status</label>
                             <select class="form-select" id="status" name="status" aria-label="status"
