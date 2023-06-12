@@ -6,7 +6,7 @@
     <div class="card">
         <h5 class="card-header">Halo <b>{{$user->name}}</b>, kamu sudah bisa cetak sertifikatmu disini</h5>
         <div class="d-flex justify-content-start ms-4 mb-4">
-            <form action="{{ route('sertifikat',$user->id) }}" method="POST" target="_blank">
+            <form action="{{ route('sertifikat.process',$user->id) }}" method="POST" target="_blank">
                 @csrf
                 @method('POST')
                 <button type="submit" class="btn btn-primary"><i class="bx bx-print me-1"></i>

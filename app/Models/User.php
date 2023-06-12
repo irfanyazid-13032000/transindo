@@ -15,7 +15,7 @@ class User extends Authenticatable
 
      protected $table = 'users';
 
-    //  protected $guarded = ['id'];
+    protected $guarded = ['id'];
     /**
      * The attributes that are mass assignable.
      *
@@ -54,4 +54,9 @@ class User extends Authenticatable
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function divisi()
+    {
+        return $this->belongsTo(Divisi::class, 'divisi_id', 'id');
+    }
 }

@@ -6,12 +6,8 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-<<<<<<< HEAD
-        "arielmejiadev/larapex-charts": "^2.1",
-=======
+        "arielmejiadev/larapex-charts": "^2.0",
         "barryvdh/laravel-dompdf": "^2.0",
-        "dompdf/dompdf": "^2.0",
->>>>>>> f33a53fd153edf017436d1b6f622de43ac9c4afb
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",

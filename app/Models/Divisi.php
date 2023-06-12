@@ -16,8 +16,16 @@ class Divisi extends Model
         'jumlah_anggota',
     ];
 
+    protected $guarded = ['id'];
+
     protected $casts = [
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
+
 }
