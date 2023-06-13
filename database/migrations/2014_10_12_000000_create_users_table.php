@@ -29,7 +29,7 @@ return new class extends Migration
             $table->date('tanggal_masuk');
             $table->date('tanggal_keluar');
             $table->string('status')->default('Aktif');
-            $table->string('sertifikat')->nullable();
+            $table->string('sertifikat')->default('Tidak');
             $table->rememberToken();
             $table->timestamps();
         });

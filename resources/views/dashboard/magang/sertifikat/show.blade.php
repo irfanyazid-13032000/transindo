@@ -4,16 +4,23 @@
 
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Activity / </span> Sertifikat</h4>
     <div class="card">
-        <h5 class="card-header">Halo <b>{{$user->name}}</b>, kamu sudah bisa cetak sertifikatmu disini</h5>
-        <div class="d-flex justify-content-start ms-4 mb-4">
-            <form action="{{ route('sertifikat.process',$user->id) }}" method="POST" target="_blank">
-                @csrf
-                @method('POST')
-                <button type="submit" class="btn btn-primary"><i class="bx bx-print me-1"></i>
-                    Sertifikat</button>
-            </form>
-            
-        </div>
+        @if($user->sertifikat == 'Ya')
+            <h5 class="card-header">Halo <b>{{$user->name}}</b>, kamu sudah bisa cetak sertifikatmu disini</h5>
+            <div class="d-flex justify-content-start ms-4 mb-4">
+                <form action="{{ route('sertifikat.process',$user->id) }}" method="POST" target="_blank">
+                    @csrf
+                    @method('POST')
+                    <button type="submit" class="btn btn-primary"><i class="bx bx-print me-1"></i>
+                        Sertifikat</button>
+                </form>
+                
+            </div>
+        
+        @else
+            <h5 class="card-header">Halo <b>{{$user->name}}</b>, Maaf sertifikatmu belum dapat diunduh</h5>
+        
+        @endif
+        
         @if (Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success') }}
