@@ -15,7 +15,7 @@
             <div class="card mb-4">
                 <h5 class="card-header">Tambah Data Anggota Magang</h5>
                 <div class="card-body">
-                    <form action="{{ route('intern.store') }}" method="POST">
+                    <form action="{{ route('intern.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
                             <label for="nama" class="form-label">Nama</label>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="surat_kontrak" class="form-label">Surat Kontrak</label>
-                            <input type="text" class="form-control" id="surat_kontrak" name="surat_kontrak" required>
+                            <input type="file" class="form-control" id="surat_kontrak" name="surat_kontrak" required>
                             @error('surat_kontrak')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror

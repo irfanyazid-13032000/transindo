@@ -38,15 +38,15 @@ class MagangController extends Controller
     {
         $rules = [
             'nama' => 'required|string|max:255',
-            'divisi' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
+            'divisi_id' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'jenis_kelamin' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
             'jenjang_pendidikan' => 'required|max:255',
             'jurusan' => 'required|string|max:255',
             'universitas' => 'required|string|max:255',
-            'surat_kontrak' => 'required',
+            'surat_kontrak' => 'required|file|mimes:pdf,doc,docx|max:5048',
             'tanggal_masuk' => 'required|date',
             'tanggal_keluar' => 'required|date',
             'status' => 'required|string|max:255',
@@ -56,7 +56,16 @@ class MagangController extends Controller
             $rules['sertifikat'] = 'max:255';
         }
 
-        User::create($request->validate($rules));
+        $validatedData = $request->validate($rules);
+
+        $suratKontrakPath = $request->file('surat_kontrak')->store('surat_kontrak');
+                
+        $user = User::create($validatedData);
+
+        $user->surat_kontrak = $suratKontrakPath;
+        $user->save();
+
+        // User::create($request->validate($rules));
 
         return redirect()->route('intern.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -112,7 +121,15 @@ class MagangController extends Controller
             $rules['email'] = 'required|email|max:255';
         }
 
-        Magang::whereId($idmagang)->update($request->validate($rules));
+        if ($request->hasFile('surat_kontrak')) {
+            $file = $request->file('surat_kontrak');
+            $fileName = $file->getClientOriginalName();
+            $file->storeAs('folder_tujuan', $fileName); 
+    
+            $request->merge(['surat_kontrak' => $fileName]);
+        }
+
+        User::whereId($idmagang)->update($request->validate($rules));
 
         return redirect()->route('intern.index')->with('success', 'Data berhasil diubah');
     }

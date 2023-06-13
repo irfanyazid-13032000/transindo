@@ -14,7 +14,7 @@
             <div class="card mb-4">
                 <h5 class="card-header">Edit Data Anggota Magang</h5>
                 <div class="card-body">
-                    <form action="{{ route('intern.update', $magang->id) }}" method="POST">
+                    <form action="{{ route('intern.update', $magang->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -89,7 +89,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="surat_kontrak" class="form-label">Surat Kontrak</label>
-                            <input type="text" class="form-control" id="surat_kontrak" name="surat_kontrak"
+                            <input type="file" class="form-control" id="surat_kontrak" name="surat_kontrak"
                                 value="{{ old('surat_kontrak', $magang->surat_kontrak) }}" required>
                             @error('surat_kontrak')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>

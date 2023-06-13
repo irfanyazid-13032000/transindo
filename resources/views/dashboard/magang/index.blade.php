@@ -34,7 +34,7 @@
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $mag->name }}</td>
-                            <td>{{ $mag->divisi }}</td>
+                            <td>{{ $mag->divisi->name }}</td>
                             <td>{{ $mag->email }}</td>
                             <td>{{ $mag->no_hp }}</td>
                             <td>{{ $mag->jenis_kelamin }}</td>
@@ -53,13 +53,13 @@
                             @if ($mag->sertifikat == null)
                                 <td><span class="badge bg-label-danger me-1">Belum Ada</span></td>
                             @else
-                                
+                            
 
                                 <td>
                                     <form action="/sertifikat/{{ $mag->id }}"  method="POST" target="_blank">
                                         @csrf
                                         @method('POST')
-                                        <button type="submit" class="dropdown-item"><i class="bx bx-print me-1"></i>
+                                        <button type="submit" class="dropdown-item"><i class="bx bg-label-success bx-print me-1"></i>
                                             Lihat Sertifikat</button>
                                     </form>
                                 </td>

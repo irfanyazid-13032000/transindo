@@ -57,14 +57,6 @@
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-3">
-                            <label for="sertifikat" class="form-label">Sertifikat</label>
-                            <input type="text" class="form-control" id="sertifikat" name="sertifikat"
-                                value="{{ old('sertifikat', $user->sertifikat) }}">
-                            @error('sertifikat')
-                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
-                            @enderror
-                        </div>
                         <div class="d-flex justify-content-end mt-2">
                             <button class="btn btn-primary" type="submit">Simpan</button>
                             <a href="{{ route('users.index') }}" class="btn btn-danger ms-3">Kembali</a>
