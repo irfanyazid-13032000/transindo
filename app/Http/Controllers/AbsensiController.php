@@ -51,9 +51,9 @@ class AbsensiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($email)
+    public function show($user_id)
     {
-        $data = Absensi::where('email', $email)->get();
+        $data = Absensi::where('user_id', $user_id)->get();
 
         return view('dashboard.magang.absensi.show', ['data' => $data]);
     }
