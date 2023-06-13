@@ -25,7 +25,7 @@
 
         <!-- Layouts -->
         @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'HRD' )
-        <li class="menu-item {{ Route::is('users.*') || Route::is('absensi.*') || Route::is('divisi.*') ? 'active open' : '' }}">
+        <li class="menu-item {{ Route::is('users.*') || Route::is('absensi.*') || Route::is('divisi.*') || Route::is('intern.*') ? 'active open' : '' }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-user-check"></i>
                 <div data-i18n="Layouts">Management </div>
@@ -57,12 +57,12 @@
                     
                   
                 @elseif (Auth::user()->role === 'HRD')
-                    <li class="menu-item">
+                    <li class="menu-item {{ Route::is('intern.*')  ? 'active' : '' }}">
                         <a href="{{ route('intern.index') }}" class="menu-link active ">
                             <div>Data Anggota Magang</div>
                         </a>
                     </li>
-                    <li class="menu-item">
+                    <li class="menu-item {{ Route::is('divisi.*')  ? 'active' : '' }}">
                         <a href="{{ route('divisi.index') }}" class="menu-link">
                             <div>Master Divisi</div>
                         </a>

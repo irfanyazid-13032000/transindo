@@ -33,7 +33,7 @@
                     @foreach ($magang as $mag)
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $mag->nama }}</td>
+                            <td>{{ $mag->name }}</td>
                             <td>{{ $mag->divisi }}</td>
                             <td>{{ $mag->email }}</td>
                             <td>{{ $mag->no_hp }}</td>
@@ -56,11 +56,11 @@
                                 
 
                                 <td>
-                                    <form action="/sertifikat/{{ $mag->id }}"  method="POST">
+                                    <form action="/sertifikat/{{ $mag->id }}"  method="POST" target="_blank">
                                         @csrf
                                         @method('POST')
                                         <button type="submit" class="dropdown-item"><i class="bx bx-print me-1"></i>
-                                            Sertifikat</button>
+                                            Lihat Sertifikat</button>
                                     </form>
                                 </td>
                             @endif
@@ -79,6 +79,8 @@
                                             <button type="submit" class="dropdown-item"><i class="bx bx-trash me-1"></i>
                                                 Delete</button>
                                         </form>
+                                      
+                                      
                                     </div>
                                 </div>
                             </td>

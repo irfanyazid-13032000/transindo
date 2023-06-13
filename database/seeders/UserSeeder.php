@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
                 'tanggal_masuk' => '2021-05-05',
                 'tanggal_keluar' => '2021-06-05',
                 'status' => 'Aktif',
-                'sertifikat' => '',
+                'sertifikat' => 'Ya',
                 'remember_token' => 'null',
                 'created_at' => now(),
             ],
