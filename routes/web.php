@@ -25,7 +25,7 @@ Route::get('/', function () {
 })->middleware('auth');
 
 Route::resource('intern', MagangController::class)->middleware('adminhr');
-Route::get('/sertifikat/{email}',[FillPDFController::class, 'show'])->name('sertifikat.show')->middleware('adminhr');
+Route::get('/sertifikat/{email}',[FillPDFController::class, 'show'])->name('sertifikat.show')->middleware(' ');
 Route::post('/sertifikat/{id}', [FillPDFController::class, 'process'])->name('sertifikat.process')->middleware('adminhr');
 Route::resource('divisi', DivisiController::class)->middleware('adminhr');
 //  Route::resource('users', UserController::class)->middleware('adminhr');
