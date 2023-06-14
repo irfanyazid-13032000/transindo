@@ -68,7 +68,7 @@
                         </li>
                         <li class="menu-item {{ Route::is('absensi.*') ? 'active' : '' }}">
                             <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
-                                <div>Absensi Anggota</div>
+                                <div>Rekap Absensi</div>
                             </a>
                         </li>
                     @else
