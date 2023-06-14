@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DivisiController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MagangController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\FillPDFController;
@@ -28,7 +29,8 @@ Route::resource('intern', MagangController::class)->middleware('adminhr');
 Route::get('/sertifikat/{email}', [FillPDFController::class, 'show'])->name('sertifikat.show')->middleware('adminhr');
 Route::post('/sertifikat/{id}', [FillPDFController::class, 'process'])->name('sertifikat.process')->middleware('adminhr');
 Route::resource('divisi', DivisiController::class)->middleware('adminhr');
-//  Route::resource('users', UserController::class)->middleware('adminhr');
+Route::resource('role', RoleController::class)->middleware('adminhr');
+
 
 // Route::resource('absensi', AbsensiController::class)->middleware('auth');
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index')->middleware('admin');

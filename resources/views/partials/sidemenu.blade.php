@@ -50,8 +50,8 @@
                             </a>
                         </li>
 
-                        <li class="menu-item {{ Route::is('divisi.*') ? 'active' : '' }}">
-                            <a href="{{ route('divisi.index') }}" class="menu-link">
+                        <li class="menu-item {{ Route::is('role.*') ? 'active' : '' }}">
+                            <a href="{{ route('role.index') }}" class="menu-link">
                                 <div>Master Role</div>
                             </a>
                         </li>

@@ -74,7 +74,7 @@ class DivisiController extends Controller
             'jumlah_anggota' => 'required|integer',
         ];
 
-        if ($request->nama != $old_name) {
+        if ($request->name != $old_name) {
             $rules['name'] = 'required|string|max:255|unique:divisis,name';
         } else {
             $rules['name'] = 'required|string|max:255';

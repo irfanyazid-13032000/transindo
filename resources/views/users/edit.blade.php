@@ -19,7 +19,7 @@
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama</label>
                             <input type="text" class="form-control" id="name" name="name"
-                                value="{{ old('name', $user->nama) }}" required>
+                                value="{{ old('name', $user->name) }}" required>
                             @error('name')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror

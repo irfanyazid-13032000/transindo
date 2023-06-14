@@ -36,10 +36,11 @@ class MagangController extends Controller
      */
     public function store(StoreMagangRequest $request)
     {
+        $validatedData = $request->validated();
         $rules = [
-            'nama' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email|max:255',
-            'divisi_id' => 'required|string|max:255',
+            'divisi' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'jenis_kelamin' => 'required|string|max:255',
             'nim' => 'required|string|max:255',
@@ -56,16 +57,15 @@ class MagangController extends Controller
             $rules['sertifikat'] = 'max:255';
         }
 
-        $validatedData = $request->validate($rules);
+        $request->validate($rules);
 
-        $suratKontrakPath = $request->file('surat_kontrak')->store('surat_kontrak');
-                
-        $user = User::create($validatedData);
+        if ($request->hasFile('surat_kontrak')) {
+            $suratKontrakPath = $request->file('surat_kontrak')->store('surat_kontrak');
+            $validatedData['surat_kontrak'] = $suratKontrakPath;
+        }
 
-        $user->surat_kontrak = $suratKontrakPath;
-        $user->save();
-
-        // User::create($request->validate($rules));
+        User::create($validatedData);
+         //User::create($request->validate($rules));
 
         return redirect()->route('intern.index')->with('success', 'Data berhasil ditambahkan');
     }

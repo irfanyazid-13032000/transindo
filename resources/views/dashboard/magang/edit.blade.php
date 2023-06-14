@@ -18,17 +18,17 @@
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
-                            <label for="nama" class="form-label">Nama</label>
-                            <input type="text" class="form-control" id="nama" name="nama"
-                                value="{{ old('nama', $magang->nama) }}" required>
-                            @error('nama')
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ old('name', $magang->name) }}" required>
+                            @error('name')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
                         <div class="mb-3">
                             <label for="divisi" class="form-label">Divisi</label>
                             <select class="form-select" id="divisi" name="divisi" aria-label="divisi" required>
-                                <option value="{{ $magang->divisi }}">{{ $magang->divisi }}</option>
+                                <option value="{{ $magang->divisi->name }}">{{ $magang->divisi->name }}</option>
                                 @foreach ($divisi as $div)
                                     @if ($div->name != $magang->divisi)
                                         <option value="{{ $div->name }}">{{ $div->name }}</option>
