@@ -35,6 +35,7 @@ Route::resource('role', RoleController::class)->middleware('adminhr');
 // Route::resource('absensi', AbsensiController::class)->middleware('auth');
 Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi.index')->middleware('admin');
 Route::get('/absensi/{email}', [AbsensiController::class, 'show'])->name('absensi.show')->middleware('auth');
+Route::get('/rekapabsensi', [AbsensiController::class, 'index'])->name('rekap.absensi')->middleware('auth');
 Route::get('/absensi/create', [AbsensiController::class, 'create'])->name('absensi.create')->middleware('auth');
 Route::post('/absensi', [AbsensiController::class, 'store'])->name('absensi.store')->middleware('auth');
 Route::get('/absensi/{absensi}/edit', [AbsensiController::class, 'edit'])->name('absensi.edit')->middleware('auth');

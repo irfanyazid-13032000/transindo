@@ -5,6 +5,59 @@
     <div class="card">
         <div class="d-flex pe-4">
             <h5 class="card-header">Data Absensi Intern Lokpro</h5>
+            {{-- eport pdf --}}
+            @if (auth()->user()->role == 'HRD')
+                <button type="button" class="btn btn-primary ms-auto align-self-center" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Export PDF
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pilih Export</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Export Semua Data</label>
+                                            <a href="{{ url('/ekspor-pdf') }}" target="_blank"
+                                                class="btn btn-primary w-100">Export
+                                                Semua</a>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Export Data 1 Bulan</label>
+                                            <a href="{{ url('/ekspor-pdf/bulan') }}" target="_blank"
+                                                class="btn btn-primary w-100">Export
+                                                Bulan</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Export Data 7 Hari Terakhir</label>
+                                            <a href="{{ url('/ekspor-pdf/minggu') }}" target="_blank"
+                                                class="btn btn-primary w-100">Export
+                                                Minggu</a>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="" class="form-label">Export Data Hari Ini</label>
+                                            <a href="{{ url('/ekspor-pdf/hari') }}" target="_blank"
+                                                class="btn btn-primary w-100">Export
+                                                Hari</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
         <div class="table-responsive text-nowrap p-4">
             <table class="table table-hover" id="table">

@@ -26,7 +26,7 @@
         <!-- Layouts -->
         @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'HRD')
             <li
-                class="menu-item {{ Route::is('users.*') || Route::is('absensi.*') || Route::is('divisi.*') || Route::is('intern.*') ? 'active open' : '' }}">
+                class="menu-item {{ Route::is('users.*') || Route::is('divisi.*') || Route::is('rekap.*') || Route::is('intern.*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bxs-user-check"></i>
                     <div data-i18n="Layouts">Management </div>
@@ -66,8 +66,8 @@
                                 <div>Master Divisi</div>
                             </a>
                         </li>
-                        <li class="menu-item {{ Route::is('absensi.*') ? 'active' : '' }}">
-                            <a href="{{ route('absensi.show', Auth::user()->email) }}" class="menu-link">
+                        <li class="menu-item {{ Route::is('rekap.*') ? 'active' : '' }}">
+                            <a href="{{ route('rekap.absensi') }}" class="menu-link">
                                 <div>Rekap Absensi</div>
                             </a>
                         </li>
