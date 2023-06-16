@@ -77,16 +77,19 @@
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @forelse ($absensi as $abs)
+                        @php
+                            $user = $dataUser->where('id', $abs->user_id)->first();
+                        @endphp
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $abs->tanggal }}</td>
-                            <td>{{ $abs->nama }}</td>
-                            <td>{{ $abs->posisi }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->divisi->name }}</td>
                             <td>{{ $abs->jam_masuk }}</td>
                             <td>{{ $abs->jam_keluar }}</td>
-                            <td>{{ $abs->aktivitas }}</td>
+                            <td>{{ $abs->deskripsi }}</td>
                             <td>{{ $abs->created_at }}</td>
-                            <td>{{ $abs->update_at }}</td>
+                            <td>{{ $abs->updated_at }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -111,6 +114,7 @@
                             <td colspan="10">Data Kosong</td>
                         </tr>
                     @endforelse
+
                 </tbody>
             </table>
         </div>

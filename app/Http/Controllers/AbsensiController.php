@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
 use App\Models\Absensi;
+use App\Models\User;
 
 class AbsensiController extends Controller
 {
@@ -14,8 +15,8 @@ class AbsensiController extends Controller
     public function index()
     {
         $absensi = Absensi::all();
-
-        return view('dashboard.magang.absensi.index', ['absensi' => $absensi]);
+        $dataUser = User::all();
+        return view('dashboard.magang.absensi.index', compact('absensi', 'dataUser'));
     }
 
     /**
