@@ -114,7 +114,6 @@
                             <td colspan="10">Data Kosong</td>
                         </tr>
                     @endforelse
-
                 </tbody>
             </table>
         </div>

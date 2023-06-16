@@ -1,3 +1,6 @@
+<?php
+use App\Models\User;
+?>
 <!DOCTYPE html>
 <html>
 
@@ -35,16 +38,20 @@
         </thead>
         <tbody class="table-border-bottom-0">
             @forelse ($absensi as $abs)
+                @php
+                    $dataUser = User::all();
+                    $user = $dataUser->where('id', $abs->user_id)->first();
+                @endphp
                 <tr class="text-center">
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $abs->tanggal }}</td>
-                    <td>{{ $abs->nama }}</td>
-                    <td>{{ $abs->posisi }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->divisi->name }}</td>
                     <td>{{ $abs->jam_masuk }}</td>
                     <td>{{ $abs->jam_keluar }}</td>
-                    <td>{{ $abs->aktivitas }}</td>
+                    <td>{{ $abs->deskripsi }}</td>
                     <td>{{ $abs->created_at }}</td>
-                    <td>{{ $abs->update_at }}</td>
+                    <td>{{ $abs->updated_at }}</td>
                 </tr>
             @empty
                 <tr class="text-center">
