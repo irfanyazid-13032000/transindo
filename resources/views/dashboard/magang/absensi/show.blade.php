@@ -21,12 +21,14 @@
         </div>
     @endif
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Absensi Harian Lokpro Media</h4>
-    {{-- <div class="d-flex justify-content-start mb-4 ms-1">
-        <form action="{{ route('absensi.store') }}" method="POST">
-            @csrf
-            <button class="btn btn-primary" type="submit">Isi Absen Masuk</button>
-        </form>
-    </div> --}}
+    @if (auth()->user()->role == 'User')
+        <div class="d-flex justify-content-start mb-4 ms-1">
+            <form action="{{ route('absensi.store') }}" method="POST">
+                @csrf
+                <button class="btn btn-primary" type="submit">Isi Absen Masuk</button>
+            </form>
+        </div>
+    @endif
     <div class="card">
         <div class="d-flex pe-4">
             <h5 class="card-header">Data Absensi Harian Kamu</h5>
@@ -48,14 +50,17 @@
                 </thead>
                 <tbody class="table-border-bottom-0">
                     @foreach ($data as $abs)
+                        @php
+                            $user = $dataUser->where('id', $abs->user_id)->first();
+                        @endphp
                         <tr class="text-center">
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $abs->tanggal }}</td>
-                            <td>{{ $abs->nama }}</td>
-                            <td>{{ $abs->posisi }}</td>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->divisi->name }}</td>
                             <td>{{ $abs->jam_masuk }}</td>
                             <td>{{ $abs->jam_keluar }}</td>
-                            <td>{{ $abs->aktivitas }}</td>
+                            <td>{{ $abs->deskripsi }}</td>
                             <td>
                                 <div class="dropdown">
                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

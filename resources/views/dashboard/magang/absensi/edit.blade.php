@@ -17,10 +17,10 @@
                         @method('PUT')
                         @csrf
                         <div class="mb-3">
-                            <label for="aktivitas" class="form-label">Aktivitas Hari Ini</label>
-                            <input type="text" class="form-control" id="aktivitas" name="aktivitas"
-                                value="{{ old('aktivitas') }}" required>
-                            @error('aktivitas')
+                            <label for="deskripsi" class="form-label">Aktivitas Hari Ini</label>
+                            <input type="text" class="form-control" id="deskripsi" name="deskripsi"
+                                value="{{ old('deskripsi') }}" required>
+                            @error('deskripsi')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>

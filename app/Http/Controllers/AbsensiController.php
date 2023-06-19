@@ -34,13 +34,12 @@ class AbsensiController extends Controller
     {
         $data = [
             'tanggal' => now()->format('Y-m-d'),
-            'nama' => auth()->user()->name,
-            'email' => auth()->user()->email,
-            'posisi' => auth()->user()->position,
+            'user_id' => auth()->user()->id, // Menyertakan nilai user_id saat membuat entri Absensi baru
             'jam_masuk' => now()->format('H:i:s'),
         ];
-        $old_data = Absensi::where('tanggal', $data['tanggal'])->where('email', auth()->user()->email)->first();
-        if ($old_data != null && auth()->user()->role === 'Intern') {
+
+        $old_data = Absensi::where('tanggal', $data['tanggal'])->where('user_id', auth()->user()->id)->first();
+        if ($old_data != null && auth()->user()->role === 'User') {
             return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Masuk Hari Ini');
         } else {
             Absensi::create($data);
@@ -49,14 +48,15 @@ class AbsensiController extends Controller
         }
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show($user_id)
     {
-        $data = Absensi::where('user_id', $user_id)->get();
-
-        return view('dashboard.magang.absensi.show', ['data' => $data]);
+        $data = Absensi::where('user_id', '=', auth()->user()->id)->get();
+        $dataUser = User::all();
+        return view('dashboard.magang.absensi.show', compact('data', 'dataUser'));
     }
 
     /**
@@ -74,18 +74,16 @@ class AbsensiController extends Controller
     {
         $data = $request->validate(
             [
-                'aktivitas' => 'required|string|max:255',
+                'deskripsi' => 'required|string|max:255',
             ]
         );
 
         $data['tanggal'] = $absensi->tanggal;
-        $data['nama'] = auth()->user()->name;
-        $data['email'] = auth()->user()->email;
-        $data['posisi'] = auth()->user()->position;
+        $data['user_id'] = $absensi->user_id;
         $data['jam_masuk'] = $absensi->jam_masuk;
         $data['jam_keluar'] = now()->format('H:i:s');
 
-        if (auth()->user()->role === 'Intern' && $absensi->jam_keluar != null) {
+        if (auth()->user()->role === 'User' && $absensi->jam_keluar != null) {
             return redirect()->route('absensi.show', auth()->user()->email)->with('error', 'Anda Sudah Mengisi Absensi Keluar Hari Ini');
         } else {
             $absensi->update($data);
