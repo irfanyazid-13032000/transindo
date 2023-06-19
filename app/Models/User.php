@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
-     protected $table = 'users';
+    protected $table = 'users';
 
     protected $guarded = ['id'];
     /**
@@ -25,9 +25,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'divisi',
-        'status',
-
+        'divisi_id',
+        'no_hp',
+        'jenis_kelamin',
+        'nim',
+        'jenjang_pendidikan',
+        'jurusan',
+        'universitas',
     ];
 
     /**

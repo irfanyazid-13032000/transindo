@@ -25,9 +25,9 @@ return new class extends Migration
             $table->string('jenjang_pendidikan');
             $table->string('jurusan');
             $table->string('universitas');
-            $table->string('surat_kontrak');
-            $table->date('tanggal_masuk');
-            $table->date('tanggal_keluar');
+            $table->string('surat_kontrak')->nullable();
+            $table->date('tanggal_masuk')->nullable();
+            $table->date('tanggal_keluar')->nullable();
             $table->string('status')->default('Aktif');
             $table->string('sertifikat')->default('Tidak');
             $table->rememberToken();

@@ -69,13 +69,19 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|confirmed',
-            'divisi' => 'required|string',
+            'divisi_id' => 'required|string',
+            'no_hp' => 'required|numeric',
+            'jenis_kelamin' => 'required|string',
+            'nim' => 'required|string',
+            'jenjang_pendidikan' => 'required|string',
+            'jurusan' => 'required|string',
+            'universitas' => 'required|string',
         ]);
 
         $data['password'] = bcrypt($data['password']);
 
         User::create($data);
 
-        return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Silahkan login.');
+        return redirect()->route('login')->with('success', 'Akun berhasil dibuat! Silakan login.');
     }
 }
