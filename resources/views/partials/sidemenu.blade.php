@@ -26,7 +26,7 @@
         <!-- Layouts -->
         @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'HRD')
             <li
-                class="menu-item {{ Route::is('users.*') || Route::is('divisi.*') || Route::is('rekap.*') || Route::is('intern.*') ? 'active open' : '' }}">
+                class="menu-item {{ Route::is('users.*') || Route::is('divisi.*') || Route::is('rekap.*') || Route::is('intern.*') || Route::is('role.*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
                     <i class="menu-icon tf-icons bx bxs-user-check"></i>
                     <div data-i18n="Layouts">Management </div>
@@ -53,6 +53,17 @@
                         <li class="menu-item {{ Route::is('role.*') ? 'active' : '' }}">
                             <a href="{{ route('role.index') }}" class="menu-link">
                                 <div>Master Role</div>
+                            </a>
+                        </li>
+                        <li class="menu-item {{ Route::is('intern.*') ? 'active' : '' }}">
+                            <a href="{{ route('intern.index') }}" class="menu-link active ">
+                                <div>Data Anggota Magang</div>
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item {{ Route::is('rekap.*') ? 'active' : '' }}">
+                            <a href="{{ route('rekap.absensi') }}" class="menu-link">
+                                <div>Rekap Absensi</div>
                             </a>
                         </li>
                     @elseif (Auth::user()->role === 'HRD')
