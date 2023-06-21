@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Divisi;
 use App\Models\Role;
 use App\Models\User;
 
@@ -18,24 +19,13 @@ class UserController extends Controller
 
     public function create()
     {
-        $role = Role::all();
-        return view('users.create', ['role' => $role]);
+        // 
 
     }
 
     public function store(StoreUserRequest $request)
     {
-        $rules = [
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>$request->password,
-            'role'=>$request->role
-
-        ];
-        $rules['password'] = bcrypt($rules['password']);
-        User::create($rules);
-        return redirect()->route('users.index')->with('success', 'Data berhasil ditambahkan');
-
+        // 
     }
 
     public function show(user $user)
@@ -47,24 +37,26 @@ class UserController extends Controller
     {
 
         $role = Role::all();
+        $divisi = Divisi::all();
         $data = User::findorfail($iduser);
-        return view('users.edit', ['user' => $data, 'role' => $role]);
+        return view('users.edit', ['user' => $data, 'role' => $role, 'divisi' => $divisi]);
     }
 
-    public function update(UpdateUserRequest $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        $user = User::findorfail($id);
+        $user = User::findorfail($request->iduser);
 
         $user->update(
             [
             'name' => $request->name,
             'email' => $request->email,
             'role_id' => $request->role,
+            'divisi_id' => $request->divisi,
             'status' => $request->status,
-
-            $user->save($request->all())
             ]
         );
+         $user->save($request->all());
+        
         return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
     }
 

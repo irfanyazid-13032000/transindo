@@ -35,9 +35,22 @@
                         <div class="mb-3">
                             <label for="role" class="form-label">Role</label>
                             <select class="form-select" id="role" name="role" aria-label="role" required>
-                               
                                 @foreach ($role as $data)
                                     @if ($user->role_id == $data->id)
+                                        <option value="{{ $data->id }}" selected>{{ $data->name }} </option>
+                                    @endif
+                                    <option value="{{ $data->id }}" >{{ $data->name }} </option>
+                                @endforeach
+                            </select>
+                            @error('role')
+                                <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="divisi" class="form-label">Divisi</label>
+                            <select class="form-select" id="divisi" name="divisi" aria-label="divisi" required>
+                                @foreach ($divisi as $data)
+                                    @if ($user->divisi_id == $data->id)
                                         <option value="{{ $data->id }}" selected>{{ $data->name }} </option>
                                     @endif
                                     <option value="{{ $data->id }}" >{{ $data->name }} </option>

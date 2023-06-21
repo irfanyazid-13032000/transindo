@@ -69,7 +69,7 @@ class DivisiController extends Controller
      */
     public function update(UpdateDivisiRequest $request, Divisi $divisi)
     {
-        $old_name = $divisi->nama;
+        $old_name = $divisi->name;
         $rules = [
             'jumlah_anggota' => 'required|integer',
         ];

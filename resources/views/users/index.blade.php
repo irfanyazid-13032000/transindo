@@ -5,9 +5,9 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Internship /</span> Data User</h4>
     <div class="card">
         <h5 class="card-header">Data User Management</h5>
-        <div class="d-flex justify-content-start ms-4">
+        {{-- <div class="d-flex justify-content-start ms-4">
             <a href="{{ route ('users.create') }}" class="btn btn-primary">Tambah User</a>
-        </div>
+        </div> --}}
         @if (Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success') }}
@@ -21,6 +21,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Posisi</th>
+                        <th>Divisi</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -32,6 +33,7 @@
                             <td>{{ $items->name }}</td>
                             <td>{{ $items->email }}</td>
                             <td>{{ $items->role->name }}</td>
+                            <td>{{ $items->divisi->name }}</td>
                             @if ($items->status == 'Aktif')
                                 <td><span class="badge bg-label-success me-1">{{ $items->status }}</span></td>
                             @else

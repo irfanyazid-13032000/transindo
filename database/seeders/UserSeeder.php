@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => bcrypt('admin123'),
                 'role_id' => '2',
-                'divisi_id' =>9,
+                'divisi_id' => 9,
                 'no_hp' => '081234567890',
                 'jenis_kelamin' => 'Laki-Laki',
                 'nim' => '1234567890',
