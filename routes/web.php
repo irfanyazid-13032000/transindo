@@ -26,6 +26,9 @@ Route::get('/', function () {
     return view('dashboard.index');
 })->middleware('auth');
 
+Route::get('/jenis_kelamin', [UserController::class, 'getJumlahJenisKelamin'])->name('users.jenis_kelamin')->middleware('admin');
+Route::get('users/jenjang_pendidikan', [UserController::class, 'jenjangPendidikan'])->name('users.jenjang_pendidikan');
+
 Route::resource('intern', MagangController::class)->middleware('adminhr');
 Route::get('/sertifikat/{email}', [FillPDFController::class, 'show'])->name('sertifikat.show')->middleware('adminhr');
 Route::post('/sertifikat/{id}', [FillPDFController::class, 'process'])->name('sertifikat.process')->middleware('adminhr');

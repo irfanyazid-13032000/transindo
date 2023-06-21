@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateUserRequest;
 use App\Models\Divisi;
 use App\Models\Role;
 use App\Models\User;
+use DB;
 
 class UserController extends Controller
 {
@@ -19,13 +20,13 @@ class UserController extends Controller
 
     public function create()
     {
-        // 
+        //
 
     }
 
     public function store(StoreUserRequest $request)
     {
-        // 
+        //
     }
 
     public function show(user $user)
@@ -55,8 +56,8 @@ class UserController extends Controller
             'status' => $request->status,
             ]
         );
-         $user->save($request->all());
-        
+        $user->save($request->all());
+
         return redirect()->route('users.index')->with('success', 'Data berhasil diubah');
     }
 
@@ -66,4 +67,35 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Data berhasil dihapus');
     }
 
+    public function getJumlahJenisKelamin()
+    {
+        $jumlahLakiLaki = User::where('jenis_kelamin', 'Laki-Laki')->count();
+        $jumlahPerempuan = User::where('jenis_kelamin', 'Perempuan')->count();
+
+        $data = [
+            'labels' => ['Laki-Laki', 'Perempuan'],
+            'data' => [$jumlahLakiLaki, $jumlahPerempuan],
+            'hoverBackgroundColor' => ['#36A2EB', '#FF4081'],
+            'hoverBorderColor' => ['#36A2EB', '#FF4081'],
+        ];
+
+        return response()->json($data);
+    }
+
+    public function jenjangPendidikan()
+    {
+        $labels = ['SMP', 'SMA', 'SMK', 'D3', 'S1', 'S2'];
+        $data = [];
+
+        foreach ($labels as $jenjang) {
+            $count = User::where('jenjang_pendidikan', $jenjang)->count();
+            $data[] = $count;
+        }
+
+        return response()->json([
+            'labels' => $labels,
+            'data' => $data,
+            'backgroundColor' => ['#00008B', '#708090', '#2F4F4F', '#000000', '#00BFFF', '#B0E0E6'],
+        ]);
+    }
 }

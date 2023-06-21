@@ -13,7 +13,7 @@ class Divisi extends Model
 
     protected $fillable = [
         'name',
-        'jumlah_anggota',
+        // 'jumlah_anggota',
     ];
 
     protected $guarded = ['id'];
@@ -25,7 +25,13 @@ class Divisi extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->hasMany(User::class);
     }
+
+    public function jumlah_anggota()
+    {
+        return $this->hasMany(User::class, 'divisi_id');
+    }
+
 
 }

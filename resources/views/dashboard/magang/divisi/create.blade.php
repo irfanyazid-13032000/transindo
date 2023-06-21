@@ -24,7 +24,7 @@
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
                         </div>
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="jumlah_anggota" class="form-label">Jumlah Anggota</label>
                             <input type="number" class="form-control" id="jumlah_anggota" name="jumlah_anggota"
                                 value="{{ old('jumlah_anggota') }}">
@@ -32,7 +32,7 @@
                             @error('jumlah_anggota')
                                 <p style="color: rgb(253, 21, 21)">{{ $message }}</p>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="d-flex justify-content-end mt-2">
                             <button class="btn btn-primary" type="submit">Simpan</button>
                             <a href="{{ route('divisi.index') }}" class="btn btn-danger ms-3">Kembali</a>

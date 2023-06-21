@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDivisiRequest;
 use App\Http\Requests\UpdateDivisiRequest;
 use App\Models\Divisi;
+use App\Models\User;
 
 class DivisiController extends Controller
 {
