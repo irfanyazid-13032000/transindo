@@ -33,13 +33,14 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="role" class="form-label">Posisi</label>
+                            <label for="role" class="form-label">Role</label>
                             <select class="form-select" id="role" name="role" aria-label="role" required>
-                                <option value="{{ $user->role }}">{{ $user->role }}</option>
+                               
                                 @foreach ($role as $data)
-                                    @if ($data->name != $user->role)
-                                        <option value="{{ $data->name }}">{{ $data->name }}</option>
+                                    @if ($user->role_id == $data->id)
+                                        <option value="{{ $data->id }}" selected>{{ $data->name }} </option>
                                     @endif
+                                    <option value="{{ $data->id }}" >{{ $data->name }} </option>
                                 @endforeach
                             </select>
                             @error('role')

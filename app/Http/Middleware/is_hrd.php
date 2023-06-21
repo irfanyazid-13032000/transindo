@@ -15,7 +15,7 @@ class is_hrd
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role === 'HRD') {
+        if (auth()->user()->role->name === 'HRD') {
             return $next($request);
         } else {
             abort(403);

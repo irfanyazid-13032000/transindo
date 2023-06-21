@@ -31,7 +31,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $items->name }}</td>
                             <td>{{ $items->email }}</td>
-                            <td>{{ $items->role }}</td>
+                            <td>{{ $items->role->name }}</td>
                             @if ($items->status == 'Aktif')
                                 <td><span class="badge bg-label-success me-1">{{ $items->status }}</span></td>
                             @else

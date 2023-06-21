@@ -25,6 +25,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id',
         'divisi_id',
         'no_hp',
         'jenis_kelamin',
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function divisi()
     {
         return $this->belongsTo(Divisi::class, 'divisi_id', 'id');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'id');
     }
 }

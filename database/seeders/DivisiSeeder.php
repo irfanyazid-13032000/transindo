@@ -14,6 +14,7 @@ class DivisiSeeder extends Seeder
     public function run(): void
     {
         $divisi = [
+            
             [
                 'id' => 1,
                 'name' => 'Laravel',
@@ -62,6 +63,12 @@ class DivisiSeeder extends Seeder
               
                 'created_at' => now(),
             ],
+            [
+                'id' => 9,
+                'name' => '-',
+               
+                'created_at' => now(),
+            ]
         ];
 
         Divisi::insert($divisi);

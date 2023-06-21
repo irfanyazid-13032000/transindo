@@ -24,7 +24,7 @@
         </li>
 
         <!-- Layouts -->
-        @if (Auth::user()->role === 'Admin' || Auth::user()->role === 'HRD')
+        @if (Auth::user()->role->name === 'Admin' || Auth::user()->role->name === 'HRD')
             <li
                 class="menu-item {{ Route::is('users.*') || Route::is('divisi.*') || Route::is('rekap.*') || Route::is('intern.*') || Route::is('role.*') ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -33,7 +33,7 @@
                 </a>
 
                 <ul class="menu-sub">
-                    @if (Auth::user()->role === 'Admin')
+                    @if (Auth::user()->role->name === 'Admin')
                         <li class="menu-item {{ Route::is('users.*') ? 'active' : '' }}">
                             <a href="{{ route('users.index') }}" class="menu-link active">
                                 <div>User Management</div>
@@ -66,7 +66,7 @@
                                 <div>Rekap Absensi</div>
                             </a>
                         </li>
-                    @elseif (Auth::user()->role === 'HRD')
+                    @elseif (Auth::user()->role->name === 'HRD')
                         <li class="menu-item {{ Route::is('intern.*') ? 'active' : '' }}">
                             <a href="{{ route('intern.index') }}" class="menu-link active ">
                                 <div>Data Anggota Magang</div>

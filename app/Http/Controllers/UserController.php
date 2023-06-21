@@ -59,7 +59,7 @@ class UserController extends Controller
             [
             'name' => $request->name,
             'email' => $request->email,
-            'role' => $request->role,
+            'role_id' => $request->role,
             'status' => $request->status,
 
             $user->save($request->all())
