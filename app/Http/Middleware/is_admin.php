@@ -15,7 +15,7 @@ class is_admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role->name === 'Admin') {
+        if (auth()->user()) {
             return $next($request);
         } else {
             abort(403);

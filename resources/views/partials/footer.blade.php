@@ -5,7 +5,7 @@
             <script>
                 document.write(new Date().getFullYear());
             </script>
-            , Lokpro Media
+            , Transindo Data Perkasa
         </div>
     </div>
 </footer>

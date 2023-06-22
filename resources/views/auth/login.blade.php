@@ -5,7 +5,7 @@
     <form method="POST" action="{{ route('login-post') }}" class="login100-form validate-form">
         @csrf
         <span class="login100-form-logo">
-            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo Lokpro" width="90">
+            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" width="90">
         </span>
 
         <span class="login100-form-title p-b-34 p-t-27">
@@ -53,10 +53,6 @@
             </button>
         </div>
 
-        <div class="text-center p-t-90 txt1">
-            Belum Punya Akun?
-            <a class="txt1" href="{{ route('register') }}">Daftar Disini
-            </a>
-        </div>
+        
     </form>
 @endsection

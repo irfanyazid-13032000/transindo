@@ -56,13 +56,7 @@ class User extends Authenticatable
         'updated_at' => 'datetime',
     ];
 
-    public function divisi()
-    {
-        return $this->belongsTo(Divisi::class, 'divisi_id', 'id');
-    }
+    
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class, 'role_id', 'id');
-    }
+   
 }

@@ -30,7 +30,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/');
+            return redirect()->intended('/order');
         }
 
         return back()->with('loginError', 'Email atau password salah!');

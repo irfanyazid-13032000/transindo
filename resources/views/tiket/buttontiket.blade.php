@@ -1,0 +1,1 @@
+<a href="/customer/id nya" class="btn btn-danger">hapus</a>
